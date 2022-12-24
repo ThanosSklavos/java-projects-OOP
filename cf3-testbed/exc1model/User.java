@@ -1,5 +1,12 @@
 package gr.aueb.cf.ch11.exc1model;
 
+/**
+ * Defines a {@link User} class
+ *
+ * @author Thanos
+ * @version 1.0
+ * @since  0.1
+ */
 public class User {
     private long id;
     private String firstname;

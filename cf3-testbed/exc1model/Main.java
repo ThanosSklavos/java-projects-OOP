@@ -1,5 +1,9 @@
 package gr.aueb.cf.ch11.exc1model;
 
+/**
+ * Prints {@link User} and {@link UserCredentials}
+ * fields.
+ */
 public class Main {
 
     public static void main(String[] args) {

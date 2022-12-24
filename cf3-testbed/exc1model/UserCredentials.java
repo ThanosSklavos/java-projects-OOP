@@ -1,5 +1,12 @@
 package gr.aueb.cf.ch11.exc1model;
 
+/**
+ * Defines a {@link UserCredentials} class
+ *
+ * @author Thanos
+ * @version 1.0
+ * @since  0.1
+ */
 public class UserCredentials {
     private long id;
     private String username;
