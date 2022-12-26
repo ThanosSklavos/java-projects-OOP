@@ -3,37 +3,30 @@ package gr.aueb.cf.ch11.bankapp.model;
 /**
  * Defines an {@link OverdraftAccount}.
  * <br>
- * @version 1.0
+ * @version 1.1
  * @since 0.1
  * @author Thanos
  */
 public class OverdraftAccount {
     private final Long id;
     private final String iban;
-    private final String firstname;
-    private final String lastname;
-    private final String ssn;
+    private final Holder holder;
     private double balance;
     private double overDraftBalance;   //borrowed money
 
     public OverdraftAccount() {
         id = 0L;
         iban = "";
-        firstname = "";
-        lastname = "";
-        ssn = "";
+        holder = new Holder();
         balance = 0;
         overDraftBalance = 0;
     }
 
-    public OverdraftAccount(Long id, String iban, String firstname,
-                            String lastname, String ssn, double balance,
+    public OverdraftAccount(Long id, String iban, Holder holder, double balance,
                             double overDraftBalance) {
         this.id = id;
         this.iban = iban;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.ssn = ssn;
+        this.holder = holder;
         this.balance = balance;
         this.overDraftBalance = overDraftBalance;
     }
@@ -46,18 +39,6 @@ public class OverdraftAccount {
         return iban;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
     public double getBalance() {
         return balance;
     }
@@ -66,6 +47,9 @@ public class OverdraftAccount {
         return overDraftBalance;
     }
 
+    public Holder getHolder() {
+        return holder;
+    }
 
     /**
      * Deposits a zero or positive amount of money
@@ -123,12 +107,11 @@ public class OverdraftAccount {
      *      Account's state
      */
     public String getAccountState() {
-        return "(" + id + ", " + iban + ", " + firstname + ", "
-                + lastname + ", " + ssn + ", Balance = " + balance + ", borrowed money: "
+        return "(" + id + ", " + iban + ", " + holder.getInfo() + ", Balance = " + balance + ", borrowed money: "
                 + overDraftBalance + ")";
     }
 
     private boolean ssnIsValid(String ssn) {
-        return this.ssn.equals(ssn);
+        return this.holder.getSsn().equals(ssn);
     }
 }

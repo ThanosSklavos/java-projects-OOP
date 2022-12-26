@@ -3,45 +3,31 @@ package gr.aueb.cf.ch11.bankapp.model;
 /**
  * Defines a {@link JointAccount} with two holders.
  * <br>
- * @version 1.0
+ * @version 1.1
  * @since 0.1
  * @author  Thanos
  */
 public class JointAccount {
     private final Long id;
     private final String iban;
-    private final String firstname1;
-    private final String lastname1;
-    private final String ssn1;
-    private final String firstname2;
-    private final String lastname2;
-    private final String ssn2;
+    private final Holder holder1;
+    private final Holder holder2;
     private double balance;
 
 
     public JointAccount() {
         id = 0L;
         iban = "";
-        firstname1 = "";
-        lastname1 = "";
-        ssn1 = "";
-        firstname2 = "";
-        lastname2 = "";
-        ssn2 = "";
+        holder1 = new Holder();
+        holder2 = new Holder();
         balance = 0;
     }
 
-    public JointAccount(Long id, String iban, String firstname,
-                        String lastname, String ssn, String firstname2,
-                        String lastname2, String ssn2, double balance) {
+    public JointAccount(Long id, String iban, Holder holder1, Holder holder2, double balance) {
         this.id = id;
         this.iban = iban;
-        this.firstname1 = firstname;
-        this.lastname1 = lastname;
-        this.ssn1 = ssn;
-        this.firstname2 = firstname2;
-        this.lastname2 = lastname2;
-        this.ssn2 = ssn2;
+        this.holder1 = holder1;
+        this.holder2 = holder2;
         this.balance = balance;
     }
 
@@ -53,36 +39,20 @@ public class JointAccount {
         return iban;
     }
 
-    public String getFirstname1() {
-        return firstname1;
-    }
-
-    public String getLastname1() {
-        return lastname1;
-    }
-
-    public String getSsn1() {
-        return ssn1;
-    }
-
-    public String getFirstname2() {
-        return firstname2;
-    }
-
-    public String getLastname2() {
-        return lastname2;
-    }
-
-    public String getSsn2() {
-        return ssn2;
-    }
-
     public double getBalance() {
         return balance;
     }
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public Holder getHolder1() {
+        return holder1;
+    }
+
+    public Holder getHolder2() {
+        return holder2;
     }
 
     /**
@@ -135,12 +105,10 @@ public class JointAccount {
      *      Account's state
      */
     public String getAccountState() {
-        return "(" + id + ", " + iban + ", " + firstname1 + ", "
-                + lastname1 + ", " + ssn1 + ", " + firstname2 + ", "
-                + lastname2 + ", " + ssn2 + ", Balance = " + balance + ")";
+        return "(" + id + ", " + iban + ", " +holder1.getInfo() + ", " + holder2.getInfo() + ", Balance = " + balance + ")";
     }
 
     private boolean ssnIsValid(String ssn) {
-        return (this.ssn1.equals(ssn)) || (this.ssn2.equals(ssn));
+        return (this.holder1.getSsn().equals(ssn)) || (this.holder2.getSsn().equals(ssn));
     }
 }

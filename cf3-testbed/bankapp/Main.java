@@ -1,5 +1,6 @@
 package gr.aueb.cf.ch11.bankapp;
 
+import gr.aueb.cf.ch11.bankapp.model.Holder;
 import gr.aueb.cf.ch11.bankapp.model.JointAccount;
 import gr.aueb.cf.ch11.bankapp.model.OverdraftAccount;
 
@@ -12,11 +13,14 @@ import gr.aueb.cf.ch11.bankapp.model.OverdraftAccount;
  */
 public class Main {
     public static void main(String[] args) {
-        OverdraftAccount overdraftAccount = new OverdraftAccount(1L, "GR1234", "Thanos",
-                                                        "Sklavos", "A123", 1500, 0);
+        Holder holder1 = new Holder(12345L ,"Thanos", "Sklavos", "A123");
+        Holder holder2 = new Holder(12346L ,"Than", "S.", "B456");
 
-        JointAccount jointAccount = new JointAccount(1L, "GR1234", "Thanos", "Sklavos", "A123",
-                                                        "Than", "S.", "B456", 3000);
+        OverdraftAccount overdraftAccount = new OverdraftAccount(1L, "GR1234", holder1,
+                                                            1500, 0);
+
+        JointAccount jointAccount = new JointAccount(2L, "GR1234", holder1, holder2,
+                                                3000);
 
         System.out.println("OverdraftAccount features test");
         overdraftAccountTest(overdraftAccount);
