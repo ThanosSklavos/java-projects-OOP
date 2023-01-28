@@ -14,7 +14,7 @@ import gr.aueb.cf.ch18.accounts.service.exceptions.InsufficientBalanceException;
 public class MainClient {
 
     public static void main(String[] args) throws AccountIdAlreadyExistsException, IbanAlreadyExistsException,
-            AccountNotFoundException, InsufficientBalanceException {
+                                                  AccountNotFoundException, InsufficientBalanceException {
         AccountDAOImpl accountDAO = new AccountDAOImpl();
         AccountServiceImpl accountService = new AccountServiceImpl(accountDAO);
 
@@ -25,14 +25,14 @@ public class MainClient {
 
 
         setAccountDTO(accountDTO1, 1L, "GR1234",10L,"Thanos",
-                "Skl.", "1234",10000);
+                "Sklavos", "1234",10000);
         setAccountDTO(accountDTO2, 2L, "GR4321",20L,"Than",
-                "Vos", "4321",20000);
+                "Skl.", "4321",20000);
         setAccountDTO(accountDTO3, 3L, "GR5678",30L,"T.",
                 "S.", "5678",30000);
 
-         setAccountDTO(accountDTO4, 2L, "GR4321",30L,"Thanasis",
-                "Than.", "5678",30000);
+         setAccountDTO(accountDTO4, 2L, "GR4321",30L,"Nick",
+                "Papadopoulos", "5678",20000);
 
         accountService.insertAccount(accountDTO1);
         accountService.insertAccount(accountDTO2);
@@ -41,12 +41,11 @@ public class MainClient {
 
         accountService.deleteAccount("GR5678");
         System.out.println(accountService.getAccount(1L));
-        System.out.println(accountService.getAccount("GR1234"));
+        System.out.println(accountService.getAccount("GR4321"));
         accountService.updateAccount(accountDTO4);
 
-
-        accountService.withdrawAmount(10000, "GR1234", "1234");
-
+        accountService.withdrawAmount(100.5, "GR1234", "1234");
+        accountService.depositAmount(2000 , "GR4321");
 
         printData(accountService);
 

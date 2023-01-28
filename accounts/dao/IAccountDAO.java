@@ -63,7 +63,7 @@ public interface IAccountDAO {
     List<Account> getAll();
 
     /**
-     * Withdraws the amount from the {@link Account#balance}.
+     * Withdraws an amount from the {@link Account#balance}.
      *
      * @param amount
      *      the amount that will be withdrawn from the {@link Account#balance}.
@@ -79,6 +79,15 @@ public interface IAccountDAO {
      *      the withdrawn amount
      */
     void withdraw(double amount, String iban, String ssn);
+
+    /**
+     * Deposits an amount in the {@link Account#balance}.
+     * @param amount
+     *      the amount that will be deposited in the {@link Account#balance}
+     * @param iban
+     *      the {@link Account#iban} that the amount will be deposited.
+     */
+    void deposit(double amount, String iban);
 
     /**
      * Checks if an <code>id</code> already exists as part

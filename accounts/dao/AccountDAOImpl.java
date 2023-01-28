@@ -63,6 +63,13 @@ public class AccountDAOImpl implements IAccountDAO {
         accounts.get(pos).setBalance(accounts.get(pos).getBalance() - amount);
     }
 
+    @Override
+    public void deposit(double amount, String iban) {
+        int pos = getIndexByIban(iban);
+
+        accounts.get(pos).setBalance(accounts.get(pos).getBalance() + amount);
+    }
+
     /**
      * Returns the position in the ArrayList datasource
      * of the {@link Account} containing the <code>id</code>.

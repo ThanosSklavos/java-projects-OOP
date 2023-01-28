@@ -8,4 +8,8 @@ public class InsufficientBalanceException extends Exception{
     public InsufficientBalanceException(Account account) {
         super("Insufficient balance: " + account.getBalance());
     }
+
+    public InsufficientBalanceException(double amount) {
+        super("Invalid amount value: " + amount);
+    }
 }

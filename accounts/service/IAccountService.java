@@ -93,7 +93,7 @@ public interface IAccountService {
     List<Account> getAllAccounts();
 
     /**
-     * Withdraws the amount from the {@link Account} balance.
+     * Withdraws an amount from the {@link Account} balance.
      *
      * @param amount
      *      the amount that will be withdrawn from the {@link Account#balance}.
@@ -108,6 +108,7 @@ public interface IAccountService {
      *
      * @throws InsufficientBalanceException
      *      if {@link Account} balance is less than the amount.
+     *      if amount is zero or smaller than zero.
      *
      * @throws AccountNotFoundException
      *          if {@link Account#iban} or {@link Account#holder#ssn} does not map
@@ -115,4 +116,19 @@ public interface IAccountService {
      */
     void withdrawAmount(double amount, String iban, String ssn) throws InsufficientBalanceException,
                                                                         AccountNotFoundException;
+
+    /**
+     * Deposits an amount into {@link Account#balance}
+     *
+     * @param amount
+     *      the amount to be deposited.
+     * @param iban
+     *      the {@link Account#iban} in which the amount will be deposited.
+     * @throws AccountNotFoundException
+     *      if  {@link Account#iban} does not map to a
+     *      {@link Account} in the datasource.
+     * @throws InsufficientBalanceException
+     *      if amount is zero or smaller than zero.
+     */
+    void depositAmount(double amount, String iban) throws AccountNotFoundException, InsufficientBalanceException;
 }

@@ -134,7 +134,7 @@ public class AccountServiceImpl implements IAccountService {
                 throw new AccountNotFoundException(ssn, iban);
             }
             if (amount <= 0) {
-                throw new InsufficientBalanceException(account);
+                throw new InsufficientBalanceException(amount);
             }
 
             if (account.getBalance() < amount) {
@@ -142,11 +142,29 @@ public class AccountServiceImpl implements IAccountService {
             }
 
             dao.withdraw(amount, iban, ssn);
+
         } catch (AccountNotFoundException | InsufficientBalanceException e) {
             e.printStackTrace();
             throw e;
         }
+    }
 
+    @Override
+    public void depositAmount(double amount, String iban) throws AccountNotFoundException,
+                                                                InsufficientBalanceException {
+        Account account;
+
+        try {
+            account = dao.get(iban);
+            if (account == null) throw new AccountNotFoundException(iban);
+            if (amount <= 0) throw new InsufficientBalanceException(amount);
+
+            dao.deposit(amount, iban);
+
+        } catch (AccountNotFoundException | InsufficientBalanceException e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     /**
